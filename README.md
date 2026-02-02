@@ -1,2 +1,2 @@
-# LupaMinum_Hyprland
+# LupaMinum Hyprland
 Pesonal Dots Files Hyprland UwU
