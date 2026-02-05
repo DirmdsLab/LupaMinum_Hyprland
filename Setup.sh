@@ -56,6 +56,9 @@ always_run() {
     run rm -rf "$HOME/.tmux.conf"
     run ln -sf "$ROOT_DIR/User/.tmux.conf" "$HOME/.tmux.conf"
 
+    run rm -rf "$HOME/.nanorc"
+    run ln -sf "$ROOT_DIR/User/.nanorc" "$HOME/.nanorc"
+
     run rm -rf "$HOME/.config/kitty"
     run ln -sf "$ROOT_DIR/User/.config/kitty" "$HOME/.config/kitty"
 
