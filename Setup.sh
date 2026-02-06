@@ -51,14 +51,35 @@ mark_setup_done() {
 always_run() {
     log "=== ALWAYS RUN TASKS START ==="
 
+    # Config
     run mkdir -p "$HOME/.config"
 
+    # Tmux
     run rm -rf "$HOME/.tmux.conf"
     run ln -sf "$ROOT_DIR/User/.tmux.conf" "$HOME/.tmux.conf"
 
+    # Nano
     run rm -rf "$HOME/.nanorc"
     run ln -sf "$ROOT_DIR/User/.nanorc" "$HOME/.nanorc"
 
+    # btop
+    run rm -rf "$HOME/.config/btop"
+    run ln -sf "$ROOT_DIR/User/.config/btop" "$HOME/.config/btop"
+
+    # cava
+    run rm -rf "$HOME/.config/cava"
+    run ln -sf "$ROOT_DIR/User/.config/cava" "$HOME/.config/cava"
+
+    # Fish
+    rm -rf "$HOME/.config/fish"
+    mkdir -p "$HOME/.config/fish"
+    ln -sf "$ROOT_DIR/User/.config/fish/config.fish" "$HOME/.config/fish/config.fish"
+
+    # foot
+    run rm -rf "$HOME/.config/foot"
+    run ln -sf "$ROOT_DIR/User/.config/foot" "$HOME/.config/foot"
+
+    # Kitty
     run rm -rf "$HOME/.config/kitty"
     run ln -sf "$ROOT_DIR/User/.config/kitty" "$HOME/.config/kitty"
 
