@@ -51,32 +51,6 @@ mark_setup_done() {
 always_run() {
     log "=== ALWAYS RUN TASKS START ==="
 
-    # Home Folder
-    run mkdir -p "$HOME/.config"
-    run mkdir -p "$HOME/Documents"
-    run mkdir -p "$HOME/Downloads"
-
-    run mkdir -p "$HOME/Pictures"
-    run mkdir -p "$HOME/Pictures/Screenshot"
-    
-    run mkdir -p "$HOME/playlist"
-
-    run mkdir -p "$HOME/Videos"
-    run mkdir -p "$HOME/Videos/Wallpaper"
-
-    run mkdir -p "$HOME/File"
-    run mkdir -p "$HOME/File/Code"
-    run mkdir -p "$HOME/File/Temp"
-    
-    run mkdir -p "$HOME/File/Software"
-    run mkdir -p "$HOME/File/Software/Game"
-    run mkdir -p "$HOME/File/Software/Storage/HDD/hddex"
-    run mkdir -p "$HOME/File/Software/Storage/NetworkStorage/SFTP"
-    run mkdir -p "$HOME/File/Software/Storage/temphdd"
-
-
-
-
     # Art-hypr
     run rm -rf "$HOME/Documents/art-hypr"
     run ln -sf "$ROOT_DIR/OtherRepo/art-hypr" "$HOME/Documents/art-hypr"
@@ -121,6 +95,30 @@ always_run() {
 first_setup_only() {
     log "=== FIRST SETUP TASKS START ==="
 
+    # Home Folder
+    run mkdir -p "$HOME/.config"
+    run mkdir -p "$HOME/Documents"
+    run mkdir -p "$HOME/Downloads"
+
+    run mkdir -p "$HOME/Pictures"
+    run mkdir -p "$HOME/Pictures/Screenshot"
+    
+    run mkdir -p "$HOME/playlist"
+
+    run mkdir -p "$HOME/Videos"
+    run mkdir -p "$HOME/Videos/Wallpaper"
+
+    run mkdir -p "$HOME/File"
+    run mkdir -p "$HOME/File/Code"
+    run mkdir -p "$HOME/File/Temp"
+    
+    run mkdir -p "$HOME/File/Software"
+    run mkdir -p "$HOME/File/Software/Game"
+    run mkdir -p "$HOME/File/Software/Storage/HDD/hddex"
+    run mkdir -p "$HOME/File/Software/Storage/NetworkStorage/SFTP"
+    run mkdir -p "$HOME/File/Software/Storage/temphdd"
+
+    # Tmux
     run rm -rf "$HOME/.config/tmux"
     run mkdir -p "$HOME/.config/tmux/plugins/catppuccin/"
     run unzip "$ROOT_DIR/OtherRepo/tmux.zip" \
