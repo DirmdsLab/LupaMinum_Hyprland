@@ -51,8 +51,35 @@ mark_setup_done() {
 always_run() {
     log "=== ALWAYS RUN TASKS START ==="
 
-    # Config
+    # Home Folder
     run mkdir -p "$HOME/.config"
+    run mkdir -p "$HOME/Documents"
+    run mkdir -p "$HOME/Downloads"
+
+    run mkdir -p "$HOME/Pictures"
+    run mkdir -p "$HOME/Pictures/Screenshot"
+    
+    run mkdir -p "$HOME/playlist"
+
+    run mkdir -p "$HOME/Videos"
+    run mkdir -p "$HOME/Videos/Wallpaper"
+
+    run mkdir -p "$HOME/File"
+    run mkdir -p "$HOME/File/Code"
+    run mkdir -p "$HOME/File/Temp"
+    
+    run mkdir -p "$HOME/File/Software"
+    run mkdir -p "$HOME/File/Software/Game"
+    run mkdir -p "$HOME/File/Software/Storage/HDD/hddex"
+    run mkdir -p "$HOME/File/Software/Storage/NetworkStorage/SFTP"
+    run mkdir -p "$HOME/File/Software/Storage/temphdd"
+
+
+
+
+    # Art-hypr
+    run rm -rf "$HOME/Documents/art-hypr"
+    run ln -sf "$ROOT_DIR/OtherRepo/art-hypr" "$HOME/Documents/art-hypr"
 
     # Tmux
     run rm -rf "$HOME/.tmux.conf"
@@ -82,6 +109,8 @@ always_run() {
     # Kitty
     run rm -rf "$HOME/.config/kitty"
     run ln -sf "$ROOT_DIR/User/.config/kitty" "$HOME/.config/kitty"
+
+
 
     log "=== ALWAYS RUN TASKS END ==="
 }

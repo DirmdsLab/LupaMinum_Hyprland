@@ -29,3 +29,7 @@ the tmux configuration directory.
 ## Kitty – Macchiato Theme
 ### Description
 Macchiato Kitty’s built-in theme
+
+## Cli Art
+### Description
+find random on the internet and mods

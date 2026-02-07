@@ -61,15 +61,15 @@ if status is-interactive
         echo "Unmounted $mapper"
     end
 
-   # Hyprland
-   function switch-workspace
-       if test (count $argv) -eq 0
-           echo "Usage: switch-workspace <number>"
-           return 1
-       end
+    # Hyprland
+    function switch-workspace
+        if test (count $argv) -eq 0
+            echo "Usage: switch-workspace <number>"
+            return 1
+        end
 
-       hyprctl dispatch workspace $argv[1]
-   end
+        hyprctl dispatch workspace $argv[1]
+    end
 
     function Float-Setup
         hyprctl dispatch workspace special:magic
@@ -83,7 +83,7 @@ if status is-interactive
 
         sleep 0.2
 
-        # Term3: zsh
+        # Term3: fish
         kitty --class Term3 >/dev/null 2>&1 &
         sleep 0.5
 
@@ -98,177 +98,56 @@ if status is-interactive
     end
 
 
-   # Neofetch 
-   function neofetch
-       if test (count $argv) -eq 0
-           command neofetch --ascii ~/Documents/Cli-Art/neofetch/neofetch6
-       else if string match -rq '^[1-5]$' $argv[1]
-           command neofetch --ascii ~/Documents/Cli-Art/neofetch/neofetch$argv[1]
-       else if test $argv[1] = "6"
-           command neofetch $argv
-       else
-           command neofetch $argv
-       end
-   end
+    function neofetch
+        set ascii_dir ~/Documents/art-hypr/neofetch
 
-   # Mpvpaper
-   function mpv-next
-       if test (count $argv) -eq 0
-           echo "Usage: mpv-next <minutes>"
-           return 1
-       end
-
-       # buat tmux session dengan nama "mpv-next"
-       tmux new-session -d -s papermpv-next "
-           while true
-               echo '{ \"command\": [\"playlist-next\"] }' | socat - /tmp/mpv-socket
-               sleep (math $argv[1] \* 60)
-           end
-       "
-       echo "tmux session 'papermpv-next' started in background. Attach with: tmux attach -t mpv-next"
-   end
-
-
-    # Idle typing function
-    function type-idle
-        # Default values
-        set repeat 7
-        set cooldown 500
-    
-        # Override if arguments provided
-        if set -q argv[1]
-            set repeat $argv[1]
-        end
-        if set -q argv[2]
-            set cooldown $argv[2]
-        end
-    
-        for i in (seq 1 $repeat)
-            ydotool type "idle"
-            if test $i -lt $repeat
-                set remaining $cooldown
-                while test $remaining -gt 0
-                    echo -ne "Cooldown: $remaining S\r"
-                    sleep 10
-                    set remaining (math "$remaining - 10")
-                end
-                echo
-            end
-        end
-    end
-    
-    # Idle mouse movement function
-    function mouse-idle
-        # Default values
-        set repeat 1
-        set cooldown (math "9 * 60")
-    
-        if set -q argv[1]
-            set repeat $argv[1]
-        end
-        if set -q argv[2]
-            set cooldown $argv[2]
-        end
-    
-        for i in (seq 1 $repeat)
-            ydotool mousemove --absolute 1918 1080
-            ydotool mousemove --absolute 1919 1080
-            ydotool mousemove --absolute 1918 1080
-    
-            if test $i -lt $repeat
-                set remaining $cooldown
-                while test $remaining -gt 0
-                    echo -ne "Cooldown: $remaining S\r"
-                    sleep 10
-                    set remaining (math "$remaining - 10")
-                end
-                echo
-            end
-        end
-    end
-    
-
-
-   # Type
-   function key-type
-       if test (count $argv) -eq 0
-           echo "Usage: key-type <kalimat>"
-           return 1
-       end
-
-       echo "[ydotool] Mengetik teks: $argv"
-       ydotool type "$argv"
-   end
-
-    # Music
-    function MusicPlaylist
         if test (count $argv) -eq 0
-            echo "Usage: MusicPlaylist <path-to-playlist.m3u> [notitle]"
-        else if test (count $argv) -ge 2; and test $argv[2] = "notitle"
-            mpv --vf=scale=640:360 --loop-playlist $argv[1]
-        else
-            mpv --vf=scale=640:360 --loop-playlist --no-osc --osd-level=0 $argv[1]
+            command neofetch --ascii $ascii_dir/neofetch0
+            return
         end
+
+        if test $argv[1] = "default"
+            command neofetch
+            return
+        end
+
+        if string match -rq '^[0-9]+$' -- $argv[1]
+            if test $argv[1] -ge 1 -a $argv[1] -le 5
+                command neofetch --ascii $ascii_dir/neofetch$argv[1]
+            else
+                command neofetch --ascii $ascii_dir/neofetch0
+            end
+            return
+        end
+
+        command neofetch $argv
     end
 
-    function Music-Play-tmux
+    # Type
+    function key-type
         if test (count $argv) -eq 0
-            echo "Usage: Music-Play <playlist_file>"
+            echo "Usage: key-type <teks>"
             return 1
         end
 
-        set playlist $argv[1]
-
-        tmux new-session -d -s Music
-        tmux send-keys -t Music "MusicPlaylist $playlist" C-m
-        tmux attach -t Music
+        echo "[ydotool] typing teks: $argv"
+        ydotool type "$argv"
     end
-
-    # Scrcpy
-    function SCRCPY
-
-        alias Android-Tools='adb version'
-        alias ADBconnect="~/File/Script/adb/adbconnect.sh"
-        alias TCPconnect="~/File/Script/adb/tcp.sh"
-        alias scrmore="bash ~/File/Script/adb/scrcpymore.sh"
-        alias ForwardTab8030='echo -e "1\n0\n0\n8030" | TCPconnect'
-
-        set_color -o cyan; echo "Available Apps"; set_color normal
-        echo -n " • "; set_color yellow; echo "Scrcpy"; set_color normal
-        echo -n "   ├── "; set_color cyan; echo "Android-Tools"; set_color normal
-        echo -n "   ├── "; set_color cyan; echo "ADBconnect"; set_color normal
-        echo -n "   ├── "; set_color cyan; echo "TCPconnect"; set_color normal
-        echo -n "   ├── "; set_color cyan; echo "ForwardTab8030"; set_color normal
-        echo -n "   ├── "; set_color cyan; echo "scrcpy"; set_color normal
-        echo -n "   └── "; set_color cyan; echo "scrmore"; set_color normal
-        echo -n "        ├── "; set_color red; echo "novideo"; set_color normal
-        echo -n "        ├── "; set_color red; echo "novirtual"; set_color normal
-        echo -n "        ├── "; set_color red; echo "justinput"; set_color normal
-        echo -n "        ├── "; set_color red; echo "inputandaudio"; set_color normal
-        echo -n "        ├── "; set_color red; echo "vlc"; set_color normal
-        echo -n "        └── "; set_color red; echo "other code"; set_color normal
-        echo ""
-
-
-        function scrcpy-list
-                set_color -o cyan; echo "Available Apps"; set_color normal
-                echo -n " • "; set_color yellow; echo "Scrcpy"; set_color normal                 
-                echo -n "   ├── "; set_color cyan; echo "ADBconnect"; set_color normal
-                echo -n "   ├── "; set_color cyan; echo "TCPconnect"; set_color normal
-                echo -n "   ├── "; set_color cyan; echo "scrcpy"; set_color normal
-                echo -n "   └── "; set_color cyan; echo "scrmore"; set_color normal
-                echo -n "        ├── "; set_color red; echo "novideo"; set_color normal
-                echo -n "        ├── "; set_color red; echo "novirtual"; set_color normal
-                echo -n "        ├── "; set_color red; echo "justinput"; set_color normal
-                echo -n "        ├── "; set_color red; echo "inputandaudio"; set_color normal
-                echo -n "        ├── "; set_color red; echo "vlc"; set_color normal
-                echo -n "        └── "; set_color red; echo "other code"; set_color normal
-                echo ""
+    
+    # Play music playlist with mpv
+    function MusicPlaylist
+        if test (count $argv) -eq 0
+            echo "Usage: MusicPlaylist <path-to-playlist.m3u>"
+            return 1
         end
-
-
-        end
-
+    
+        mpv \
+            --vf=scale=640:360 \
+            --loop-playlist \
+            --no-osc \
+            --osd-level=0 \
+            "$argv[1]"
+    end
 
     # Cli
     function launch_cli_art
@@ -277,12 +156,12 @@ if status is-interactive
         set lines (tput lines)
 
         if test "$tty" = "/dev/tty1" -o "$tty" = "/dev/tty2" -o "$tty" = "/dev/tty3"
-            ~/Documents/Cli-Art/user.sh
+            ~/Documents/art-hypr/user.sh
         else if test $cols -ge 160; and test $lines -ge 35
-            ~/Documents/Cli-Art/start-art.sh
+            ~/Documents/art-hypr/start-art.sh
         else
             neofetch
-            ~/Documents/Cli-Art/user.sh
+            ~/Documents/art-hypr/user.sh
         end
     end
 
