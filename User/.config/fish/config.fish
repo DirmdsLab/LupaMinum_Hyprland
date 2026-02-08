@@ -1,34 +1,60 @@
 if status is-interactive
 
-   # Func
+    # Alias And Func Mix By Title
+
+    # Better ls
+    alias ls='eza --icons --group-directories-first -1'
+    alias ls-M='eza --icons --group-directories-first -1 -s modified'
    
-   # Tmux 
-   function new-attach
-       if test (count $argv) -eq 0
-           echo "Usage: new-attach <session_name>"
-           return 1
-       end
+    # Fish Config
+    alias Reload='cd; clear; source ~/.config/fish/config.fish'
+    alias Reload-Here='clear; source ~/.config/fish/config.fish'
+    alias Reload-Here-Keep='source ~/.config/fish/config.fish'
+    alias FishConfig='nano ~/.config/fish/config.fish'
 
-       tmux new -A -s $argv[1]
-   end
+    # Script
+    alias Random-Script='cd ~/File/Script/random; exa -T'
 
-   # setup-ssh-agent <path_to_private_key>
-   function setup-ssh-agent
-       if test (count $argv) -eq 0
-           echo "Usage: setup-ssh-agent <path_to_private_key>"
-           return 1
-       end
+    # Bios
+    alias RebootToBios='systemctl reboot --firmware-setup'
 
-       set key $argv[1]
+    # Nix Config
+    alias NIXConfig='cd ~/Nix-lupaminum/'
+    alias NIXReload='sudo nixos-rebuild switch --flake /etc/nixos#Tutturuu'
+    alias NIXHistory='sudo nix-env --list-generations --profile /nix/var/nix/profiles/system'
 
-       # Start ssh-agent and capture its environment variables
-       eval (ssh-agent -c)
+    # Vol
+    alias VolNow='wpctl get-volume @DEFAULT_AUDIO_SINK@'
+    alias VolUp='$HOME/File/Script/audio/vol.sh up'
+    alias VolDown='$HOME/File/Script/audio/vol.sh down'
 
-       # Add the provided key
-       ssh-add $key
-   end
+    # Tmux 
+    function new-attach
+        if test (count $argv) -eq 0
+            echo "Usage: new-attach <session_name>"
+            return 1
+        end
 
-   # Mount and unmount encrypted HDD (HDDex)
+        tmux new -A -s $argv[1]
+    end
+
+    # setup-ssh-agent <path_to_private_key>
+    function setup-ssh-agent
+        if test (count $argv) -eq 0
+            echo "Usage: setup-ssh-agent <path_to_private_key>"
+            return 1
+        end
+
+        set key $argv[1]
+
+        # Start ssh-agent and capture its environment variables
+        eval (ssh-agent -c)
+
+        # Add the provided key
+        ssh-add $key
+    end
+
+    # Mount and unmount encrypted HDD (HDDex)
 
     function hddex-mount
         if test (count $argv) -ne 3
@@ -71,6 +97,10 @@ if status is-interactive
         hyprctl dispatch workspace $argv[1]
     end
 
+    # Hyprlock
+    alias unlock='pkill -USR1 hyprlock'
+
+    # Float
     function Float-Setup
         hyprctl dispatch workspace special:magic
 
@@ -98,6 +128,7 @@ if status is-interactive
     end
 
 
+    # Neofetch
     function neofetch
         set ascii_dir ~/Documents/art-hypr/neofetch
 
@@ -123,7 +154,7 @@ if status is-interactive
         command neofetch $argv
     end
 
-    # Type
+    # ydotool
     function key-type
         if test (count $argv) -eq 0
             echo "Usage: key-type <teks>"
@@ -134,6 +165,8 @@ if status is-interactive
         ydotool type "$argv"
     end
     
+    alias key-input='~/File/Script/random/key.sh'
+
     # Play music playlist with mpv
     function MusicPlaylist
         if test (count $argv) -eq 0
@@ -165,73 +198,12 @@ if status is-interactive
         end
     end
 
-    launch_cli_art
-
-    function audio-tran
-        kitty --class kitty-audio \
-              --config $HOME/File/Script/kitty/kitty-transparant.conf \
-              -e cava &
-    end
-
-
-    # Alias
-
-    # Better ls
-    alias ls='eza --icons --group-directories-first -1'
-    alias ls-T='eza --icons --group-directories-first -1 -T'
-    alias ls-TM='eza --icons --group-directories-first -1 --sort=newest -T'
-    alias ls-M='eza --icons --group-directories-first -1 --sort=newest'
-
-    # Fish Config
-    alias Reload='cd; clear; source ~/.config/fish/config.fish'
-    alias Reload-Here='clear; source ~/.config/fish/config.fish'
-    alias Reload-Here-Keep='source ~/.config/fish/config.fish'
-    alias FishConfig='nano ~/.config/fish/config.fish'
-
-    # Wallpaper
-    alias mpv-auto='tmux new-session -d -s mpv-auto-session "bash $HOME/File/Script/mpvpaper/auto.sh"; and echo "Session mpv-auto-session started in background"'
-    alias mpv-auto-pause='tmux new-session -d -s mpv-pause-session "bash $HOME/File/Script/mpvpaper/auto-pause.sh"; and echo "Session mpv-pause-session started in background"'
-
-    # Script
-    alias Random-Script='cd ~/File/Script/random; exa -T'
-    alias key-input='~/File/Script/random/key.sh'
-
-    # Subs
-    alias Subtitle='~/File/Script/subtitle/subtitle-setting.sh'
-    alias Subtitle-Con='~/File/Script/subtitle/convert-subtitle.sh'
-
-    # Bios
-    alias RebootToBios='systemctl reboot --firmware-setup'
-
-    # Nix Config
-    alias NIXConfig='cd ~/Nix-lupaminum/'
-    alias NIXReload='sudo nixos-rebuild switch --flake /etc/nixos#Tutturuu'
-    alias NIXHistory='sudo nix-env --list-generations --profile /nix/var/nix/profiles/system'
- 
-    # Style
-    alias clock='tty-clock -c -C 6 -B'
-
-    # Mpvpaper
-    alias mpv-next-default='mpv-next 7'
-
-    # Hyprland
-    alias Floatpanel='hyprctl dispatch togglespecialworkspace magic'
-
-    # Vol
-    alias VolNow='wpctl get-volume @DEFAULT_AUDIO_SINK@'
-    alias VolUp='$HOME/File/Script/audio/vol.sh up'
-    alias VolDown='$HOME/File/Script/audio/vol.sh down'
-
-    # Hyprlock
-    alias unlock='pkill -USR1 hyprlock'
-
-    # App
-    alias Tabletdriver='systemctl --user start opentabletdriver.service'
+    # Main
 
     set -g fish_greeting
+
+    launch_cli_art
 
     starship init fish | source
 
 end
-
-

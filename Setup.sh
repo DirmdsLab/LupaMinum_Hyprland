@@ -133,8 +133,6 @@ first_setup_only() {
 echo -e "\n$SEPARATOR" >>"$LOG_FILE"
 log "Setup script started"
 
-always_run
-
 if is_first_setup; then
     log "First setup detected"
     first_setup_only
@@ -142,6 +140,8 @@ if is_first_setup; then
 else
     log "First setup already done, skipping"
 fi
+
+always_run
 
 log "Setup script finished"
 echo "$SEPARATOR" >>"$LOG_FILE"
