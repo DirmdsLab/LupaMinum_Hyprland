@@ -84,6 +84,9 @@ always_run() {
     run rm -rf "$HOME/.config/kitty"
     run ln -sf "$ROOT_DIR/User/.config/kitty" "$HOME/.config/kitty"
 
+    # mako
+    run rm -rf "$HOME/.config/mako"
+    run ln -sf "$ROOT_DIR/User/.config/mako" "$HOME/.config/mako"
 
 
     log "=== ALWAYS RUN TASKS END ==="
