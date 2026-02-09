@@ -88,6 +88,17 @@ always_run() {
     run rm -rf "$HOME/.config/mako"
     run ln -sf "$ROOT_DIR/User/.config/mako" "$HOME/.config/mako"
 
+    # neofetch
+    run rm -rf "$HOME/.config/neofetch"
+    run ln -sf "$ROOT_DIR/User/.config/neofetch" "$HOME/.config/neofetch"
+
+    # mimeapps.list
+    run rm -rf "$HOME/.config/mimeapps.list"
+    run ln -sf "$ROOT_DIR/User/.config/mimeapps.list" "$HOME/.config/mimeapps.list"
+
+    # starship.toml
+    run rm -rf "$HOME/.config/starship.toml"
+    run ln -sf "$ROOT_DIR/User/.config/starship.toml" "$HOME/.config/starship.toml"
 
     log "=== ALWAYS RUN TASKS END ==="
 }

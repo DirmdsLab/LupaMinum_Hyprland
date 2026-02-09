@@ -20,7 +20,7 @@ ydotool
 hyprland
 hyprlock
 neofetch
-
+firefox
 
 tty-clock
 cava
@@ -28,6 +28,6 @@ mpv
 starship
 
 mako
-
+org.gnome.Loupe.desktop
 eza
 font_family JetBrainsMono Nerd Font Mono
