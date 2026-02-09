@@ -33,3 +33,16 @@ Macchiato Kitty’s built-in theme
 ## Cli Art
 ### Description
 find random on the internet and mods
+
+
+
+## Mpv Playlistmanager
+**Source:** https://github.com/jonniek/mpv-playlistmanager
+### Description
+mpv scripts
+
+## Anime4K
+**Source:** https://github.com/bloc97/Anime4K
+### Description
+anime upscaling
+

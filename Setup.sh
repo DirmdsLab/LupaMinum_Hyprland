@@ -88,6 +88,11 @@ always_run() {
     run rm -rf "$HOME/.config/mako"
     run ln -sf "$ROOT_DIR/User/.config/mako" "$HOME/.config/mako"
 
+    # mpv
+    run rm -rf "$HOME/.config/mpv"
+    run ln -sf "$ROOT_DIR/User/.config/mpv" "$HOME/.config/mpv"
+    run ln -s "$HOME/playlist" "$HOME/.config/mpv/playlists"
+
     # neofetch
     run rm -rf "$HOME/.config/neofetch"
     run ln -sf "$ROOT_DIR/User/.config/neofetch" "$HOME/.config/neofetch"
