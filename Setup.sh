@@ -143,6 +143,12 @@ first_setup_only() {
     run unzip "$ROOT_DIR/OtherRepo/tmux.zip" \
         -d "$HOME/.config/tmux/plugins/catppuccin/"
 
+    # Mpv shaders
+    run rm -rf OtherRepo/GLSL_Mac_Linux_High-end
+    run mkdir -p OtherRepo/GLSL_Mac_Linux_High-end
+    run unzip "$ROOT_DIR/OtherRepo/GLSL_Mac_Linux_High-end.zip" -d "OtherRepo/GLSL_Mac_Linux_High-end"
+    run mv "$ROOT_DIR/OtherRepo/GLSL_Mac_Linux_High-end/shaders" "$ROOT_DIR/User/.config/mpv/"
+
     log "=== FIRST SETUP TASKS END ==="
 }
 
