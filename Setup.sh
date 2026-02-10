@@ -102,6 +102,10 @@ always_run() {
     run rm -rf "$HOME/.config/neofetch"
     run ln -sf "$ROOT_DIR/User/.config/neofetch" "$HOME/.config/neofetch"
 
+    # quickshell
+    run rm -rf "$HOME/.config/quickshell"
+    run ln -sf "$ROOT_DIR/User/.config/quickshell" "$HOME/.config/quickshell"
+
     # wofi
     run rm -rf "$HOME/.config/wofi"
     run ln -sf "$ROOT_DIR/User/.config/wofi" "$HOME/.config/wofi"
