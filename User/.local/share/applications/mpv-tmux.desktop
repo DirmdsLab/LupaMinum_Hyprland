@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=MPV Tmux
+Comment=Play video in MPV inside a tmux session
+Exec=sh -c '"$HOME/File/Script/mpv/mpv.sh" "$@"' sh %f
+Icon=mpv
+Terminal=false
+Type=Application
+MimeType=video/mp4;video/x-matroska;video/x-mpegurl;video/x-msvideo;
+Categories=AudioVideo;Player;
+StartupNotify=true

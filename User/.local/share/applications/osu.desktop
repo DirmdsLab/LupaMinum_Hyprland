@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=osu!
+Exec=sh -c '"$HOME/File/Software/Game/Osu/run-osu-static.sh"'
+Icon=lazer
+Type=Application
+Categories=Game;
+StartupNotify=true

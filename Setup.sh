@@ -98,7 +98,6 @@ always_run() {
     run rm -rf "$HOME/.config/mpv"
     run ln -sf "$ROOT_DIR/User/.config/mpv" "$HOME/.config/mpv"
 
-
     # neofetch
     run rm -rf "$HOME/.config/neofetch"
     run ln -sf "$ROOT_DIR/User/.config/neofetch" "$HOME/.config/neofetch"
@@ -115,6 +114,10 @@ always_run() {
     run rm -rf "$HOME/.config/starship.toml"
     run ln -sf "$ROOT_DIR/User/.config/starship.toml" "$HOME/.config/starship.toml"
 
+    # Script
+    run rm -rf "$HOME/File/Script"
+    run ln -sf "$ROOT_DIR/User/File/Script" "$HOME/File/Script"
+
     log "=== ALWAYS RUN TASKS END ==="
 }
 
@@ -126,6 +129,7 @@ first_setup_only() {
 
     # Home Folder
     run mkdir -p "$HOME/.config"
+    run mkdir -p "$HOME/.local"
     run mkdir -p "$HOME/Documents"
     run mkdir -p "$HOME/Downloads"
 
@@ -146,6 +150,9 @@ first_setup_only() {
     run mkdir -p "$HOME/File/Software/Storage/HDD/hddex"
     run mkdir -p "$HOME/File/Software/Storage/NetworkStorage/SFTP"
     run mkdir -p "$HOME/File/Software/Storage/temphdd"
+
+    # .local
+    run cp -r "$ROOT_DIR/User/.local" "$HOME/"
 
     # Tmux
     run rm -rf "$HOME/.config/tmux"
