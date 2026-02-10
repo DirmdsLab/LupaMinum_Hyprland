@@ -41,3 +41,5 @@ fish script
     alias VolDown='$HOME/File/Script/audio/vol.sh down'
 
     alias key-input='~/File/Script/random/key.sh'
+
+gtk themes

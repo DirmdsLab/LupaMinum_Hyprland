@@ -167,6 +167,32 @@ first_setup_only() {
     run rm -rf "$ROOT_DIR/User/.config/mpv/shaders"
     run mv "$ROOT_DIR/OtherRepo/GLSL_Mac_Linux_High-end/shaders" "$ROOT_DIR/User/.config/mpv/"
 
+    # themes
+
+    run mkdir -p "$HOME/.themes"
+
+    run rm -rf "$ROOT_DIR/OtherRepo/Theme/gtk/Graphite-Dark-nord"
+    run mkdir -p "$ROOT_DIR/OtherRepo/Theme/gtk/Graphite-Dark-nord"
+    run tar -xf "$ROOT_DIR/OtherRepo/Theme/gtk/Graphite-Dark-nord.tar.xz" -C "$ROOT_DIR/OtherRepo/Theme/gtk/Graphite-Dark-nord"
+    run cp -r "$ROOT_DIR/OtherRepo/Theme/gtk/Graphite-Dark-nord/Graphite-Dark-nord" "$HOME/.themes"
+
+    # Cursor
+    run mkdir -p "$HOME/.icons"
+
+    run rm -rf "$ROOT_DIR/OtherRepo/Theme/Cursor/Bibata-Modern-Ice"
+    run mkdir -p "$ROOT_DIR/OtherRepo/Theme/Cursor/Bibata-Modern-Ice"
+    run tar -xf "$ROOT_DIR/OtherRepo/Theme/Cursor/Bibata-Modern-Ice.tar.xz" -C "$ROOT_DIR/OtherRepo/Theme/Cursor/Bibata-Modern-Ice"
+    run cp -r "$ROOT_DIR/OtherRepo/Theme/Cursor/Bibata-Modern-Ice/Bibata-Modern-Ice" "$HOME/.icons"
+
+    # Icon
+    run rm -rf "$ROOT_DIR/OtherRepo/Theme/Icon/01-Colloid"
+    run mkdir -p "$ROOT_DIR/OtherRepo/Theme/Icon/01-Colloid"
+    run tar -xf "$ROOT_DIR/OtherRepo/Theme/Icon/01-Colloid.tar.xz" -C "$ROOT_DIR/OtherRepo/Theme/Icon/01-Colloid"
+    run cp -r $ROOT_DIR/OtherRepo/Theme/Icon/01-Colloid/* "$HOME/.icons"
+
+    # To apply themes
+    run echo "Run 'nwg-look' to apply themes"
+
     log "=== FIRST SETUP TASKS END ==="
 }
 
