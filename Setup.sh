@@ -80,6 +80,10 @@ always_run() {
     run rm -rf "$HOME/.config/foot"
     run ln -sf "$ROOT_DIR/User/.config/foot" "$HOME/.config/foot"
 
+    # hypr
+    run rm -rf "$HOME/.config/hypr"
+    run ln -sf "$ROOT_DIR/User/.config/hypr" "$HOME/.config/hypr"
+
     # Kitty
     run rm -rf "$HOME/.config/kitty"
     run ln -sf "$ROOT_DIR/User/.config/kitty" "$HOME/.config/kitty"
@@ -89,13 +93,19 @@ always_run() {
     run ln -sf "$ROOT_DIR/User/.config/mako" "$HOME/.config/mako"
 
     # mpv
+    run rm -f "$ROOT_DIR/User/.config/mpv/playlists"
+    run ln -s "$HOME/playlist" "$ROOT_DIR/User/.config/mpv/playlists"
     run rm -rf "$HOME/.config/mpv"
     run ln -sf "$ROOT_DIR/User/.config/mpv" "$HOME/.config/mpv"
-    run ln -s "$HOME/playlist" "$HOME/.config/mpv/playlists"
+
 
     # neofetch
     run rm -rf "$HOME/.config/neofetch"
     run ln -sf "$ROOT_DIR/User/.config/neofetch" "$HOME/.config/neofetch"
+
+    # wofi
+    run rm -rf "$HOME/.config/wofi"
+    run ln -sf "$ROOT_DIR/User/.config/wofi" "$HOME/.config/wofi"
 
     # mimeapps.list
     run rm -rf "$HOME/.config/mimeapps.list"
@@ -147,6 +157,7 @@ first_setup_only() {
     run rm -rf OtherRepo/GLSL_Mac_Linux_High-end
     run mkdir -p OtherRepo/GLSL_Mac_Linux_High-end
     run unzip "$ROOT_DIR/OtherRepo/GLSL_Mac_Linux_High-end.zip" -d "OtherRepo/GLSL_Mac_Linux_High-end"
+    run rm -rf "$ROOT_DIR/User/.config/mpv/shaders"
     run mv "$ROOT_DIR/OtherRepo/GLSL_Mac_Linux_High-end/shaders" "$ROOT_DIR/User/.config/mpv/"
 
     log "=== FIRST SETUP TASKS END ==="
