@@ -1,3 +1,105 @@
+# Tools
+wget
+git
+neofetch
+ydotool
+usbutils  
+sshfs
+tmux
+efibootmgr
+zip
+unzip
+
+
+# Disk
+gparted
+ncdu
+  
+# System Monitor
+btop
+radeontop
+  
+# Audio
+pulseaudio
+pavucontrol
+  
+# Hyprland Tools
+kitty
+hyprlock
+wofi
+hypridle
+  
+# Better Tools
+eza
+bat
+  
+# Sudo
+hyprpolkitagent
+  
+# Clipboard
+wl-clipboard
+cliphist
+  
+# Notification
+mako
+libnotify    
+  
+# App-Image
+appimage-run
+icu
+
+fish
+hyprland
+thunar
+opentabletdriver
+sunshine
+podman
+flatpak
+ssdm
+
+# File
+file-roller
+
+# Android-Tools
+android-tools
+scrcpy
+
+# Wallpaper
+mpvpaper
+
+# ss
+grim
+slurp
+
+# Player
+mpv
+ffmpeg-full
+
+# Tool mpvpaper
+socat
+jq
+
+# UwU
+cava
+tty-clock
+
+# Dev
+vscodium
+neovim
+   
+# Terminal
+foot
+starship
+
+# Themes
+nwg-look
+
+# Translate
+translate-shell
+
+
+
+
 tmux
 kitty
 
