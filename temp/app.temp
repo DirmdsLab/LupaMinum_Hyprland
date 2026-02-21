@@ -145,3 +145,21 @@ fish script
     alias key-input='~/File/Script/random/key.sh'
 
 gtk themes
+
+
+
+
+0s ❯ flatpak list --app                                                                                                                                              09:02
+Name                                     Application ID                          Version           Branch          Installation
+Discord                                  com.discordapp.Discord                  0.0.122           stable          system
+Flatseal                                 com.github.tchx84.Flatseal              2.4.0             stable          system
+Xournal++                                com.github.xournalpp.xournalpp          1.3.1             stable          system
+Moonlight                                com.moonlight_stream.Moonlight          6.1.0             stable          system
+Steam                                    com.valvesoftware.Steam                 1.0.0.84          stable          system
+GNU Image Manipulation Program           org.gimp.GIMP                           3.0.8             stable          system
+Image Viewer                             org.gnome.Loupe                         49.2              stable          system
+Kdenlive                                 org.kde.kdenlive                        25.12.0           stable          system
+Krita                                    org.kde.krita                           5.2.14            stable          system
+Firefox                                  org.mozilla.firefox                     147.0.2           stable          system
+Sober                                    org.vinegarhq.Sober                     1.6.5             stable          system
+Vinegar                                  org.vinegarhq.Vinegar                   1.9.3             stable          system
