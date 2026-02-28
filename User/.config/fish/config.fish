@@ -198,6 +198,8 @@ if status is-interactive
         end
     end
 
+    # Triger-Add
+
     # Main
 
     set -g fish_greeting
