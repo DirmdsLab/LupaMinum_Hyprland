@@ -5,48 +5,39 @@ import time
 app = Flask(__name__)
 
 # ==========================================================
-# TRANSLATE FUNCTION
+# TRANSLATE FUNCTION (dipakai semua endpoint)
 # ==========================================================
-
-def translate(text):
-
+def do_translate(text):
     result = subprocess.run(
         ["trans", "-b", "-s", "en", "-t", "id", text],
         capture_output=True,
         text=True
     )
-
-    translated = result.stdout.strip()
-
-    return translated
+    return result.stdout.strip()
 
 
 # ==========================================================
 # BUILD VTT
 # ==========================================================
-
 def build_vtt(subs):
 
     output = ["WEBVTT\n"]
-
     total = len(subs)
 
-    print("")
-    print("====================================")
+    print("\n====================================")
     print(f"TRANSLATE START  |  {total} lines")
     print("====================================")
 
     start_time = time.time()
 
     for i, line in enumerate(subs, start=1):
-
         text = line["text"]
         timecode = line["time"].replace(",", ".")
 
         print(f"[{i}/{total}] Translating:")
         print("TEXT:", text)
 
-        translated = translate(text)
+        translated = do_translate(text)
 
         print("RESULT:", translated)
         print("------------------------------------")
@@ -62,51 +53,60 @@ def build_vtt(subs):
     print("TRANSLATE FINISHED")
     print(f"Total lines : {total}")
     print(f"Time taken  : {round(end_time-start_time,2)} sec")
-    print("====================================")
-    print("")
+    print("====================================\n")
 
     return "\n".join(output)
 
 
 # ==========================================================
-# API
+# API 1 - SINGLE TEXT
 # ==========================================================
+@app.route("/translate", methods=["POST"])
+def translate_api():
 
+    data = request.json
+    text = data.get("text", "")
+
+    if not text:
+        return jsonify({"error": "No text"}), 400
+
+    translated = do_translate(text)
+
+    return jsonify({
+        "original": text,
+        "translated": translated
+    })
+
+
+# ==========================================================
+# API 2 - SUBTITLE
+# ==========================================================
 @app.route("/translate_sub", methods=["POST"])
 def translate_sub():
 
     data = request.json
 
     if not data or "subs" not in data:
-        return jsonify({"error":"Invalid data"}),400
+        return jsonify({"error": "Invalid data"}), 400
 
     subs = data["subs"]
-
     vtt = build_vtt(subs)
 
-    return Response(
-        vtt,
-        mimetype="text/vtt"
-    )
+    return Response(vtt, mimetype="text/vtt")
 
 
 # ==========================================================
 # MAIN
 # ==========================================================
-
 if __name__ == "__main__":
 
-    print("")
-    print("====================================")
+    print("\n====================================")
     print(" MPV Subtitle Translate Server ")
     print("====================================")
     print("Listening on : http://0.0.0.0:5000")
-    print("API endpoint : /translate_sub")
-    print("====================================")
-    print("")
+    print("Endpoints:")
+    print(" - /translate")
+    print(" - /translate_sub")
+    print("====================================\n")
 
-    app.run(
-        host="0.0.0.0",
-        port=5000,
-        debug=False
-    )
+    app.run(host="0.0.0.0", port=5000, debug=False)

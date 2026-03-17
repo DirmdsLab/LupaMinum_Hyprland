@@ -7,18 +7,18 @@ x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop
 image/webp=kitty-open.desktop
 video/mp4=mpv-tmux.desktop
 image/gif=org.gnome.Loupe.desktop
-text/plain=kitty-open.desktop
+text/plain=userapp-nano-kitty-L78IM3.desktop
 
 [Added Associations]
 video/webm=mpv.desktop;mpv-tmux.desktop;
 image/png=org.mozilla.firefox.desktop;kitty-open.desktop;org.gnome.Loupe.desktop;
 application/x-desktop=nvim.desktop;
-text/plain=nvim.desktop;kitty-open.desktop;
+text/plain=userapp-nano-kitty-1AYAM3.desktop;nvim.desktop;kitty-open.desktop;userapp-nano-kitty-L78IM3.desktop;
 video/x-matroska=mpv-tmux.desktop;
 application/x-zerosize=nvim.desktop;
 application/json=nvim.desktop;
 image/webp=kitty-open.desktop;
-image/jpeg=org.mozilla.firefox.desktop;
+image/jpeg=org.gnome.Loupe.desktop;org.mozilla.firefox.desktop;
 audio/x-mpegurl=mpv.desktop;nvim.desktop;
-application/x-shellscript=nvim.desktop;
+application/x-shellscript=userapp-nano-kitty-L78IM3.desktop;nvim.desktop;
 image/gif=org.gnome.Loupe.desktop;
