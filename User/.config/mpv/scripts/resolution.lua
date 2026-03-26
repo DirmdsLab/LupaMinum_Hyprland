@@ -1,8 +1,10 @@
--- Resolution change
+-- Resolution change + No Video
 
 local mp = require 'mp'
 
 local resolutions = {
+    { name = "No Video (Audio Only)", no_video = true },
+
     { name = "Default (Original)", vf = "" },
 
     { name = "── NO CROP ──", header = true },
@@ -66,15 +68,26 @@ local function close_menu()
 end
 
 local function apply_resolution()
-    local vf = resolutions[selected].vf
+    local item = resolutions[selected]
 
+    -- reset semua dulu
     mp.set_property("vf", "")
+    mp.set_property("vid", "auto")
 
-    if vf ~= "" then
-        mp.set_property("vf", vf)
+    -- mode no video
+    if item.no_video then
+        mp.set_property("vid", "no")
+        mp.osd_message("Video OFF (Audio Only)", 2)
+        close_menu()
+        return
     end
 
-    mp.osd_message("Resolution set: " .. resolutions[selected].name, 2)
+    -- apply filter kalau ada
+    if item.vf ~= "" then
+        mp.set_property("vf", item.vf)
+    end
+
+    mp.osd_message("Resolution set: " .. item.name, 2)
     close_menu()
 end
 
@@ -107,5 +120,5 @@ local function open_menu()
     mp.add_forced_key_binding("ESC", "res_esc", close_menu)
 end
 
--- Ctrl + r
+-- Ctrl + R buka menu
 mp.add_key_binding("Ctrl+r", "resolution_menu", open_menu)
