@@ -5,7 +5,7 @@ set -e
 # Paths & State
 # =========================
 ROOT_DIR="$(pwd)"
-TEMP_DIR="$ROOT_DIR/temp"
+TEMP_DIR="$ROOT_DIR/Temp"
 STATE_FILE="$TEMP_DIR/UwU.temp"
 LOG_FILE="$TEMP_DIR/setup.log"
 
@@ -53,7 +53,7 @@ always_run() {
 
     # Art-hypr
     run rm -rf "$HOME/Documents/art-hypr"
-    run ln -sf "$ROOT_DIR/OtherRepo/art-hypr" "$HOME/Documents/art-hypr"
+    run ln -sf "$ROOT_DIR/external/art-hypr" "$HOME/Documents/art-hypr"
 
     # Tmux
     run rm -rf "$HOME/.tmux.conf"
@@ -161,8 +161,9 @@ first_setup_only() {
     # Tmux
     run rm -rf "$HOME/.config/tmux"
     run mkdir -p "$HOME/.config/tmux/plugins/catppuccin/"
-    run unzip "$ROOT_DIR/OtherRepo/tmux.zip" \
-        -d "$HOME/.config/tmux/plugins/catppuccin/"
+    run rm -rf "$ROOT_DIR/external/tmux/tmux-main"
+    run unzip "$ROOT_DIR/external/tmux/catppuccin-tmux.zip" -d "$ROOT_DIR/external/tmux/"
+    run mv "$ROOT_DIR/external/tmux/tmux-main" "$HOME/.config/tmux/plugins/catppuccin/tmux"
 
     # Mpv shaders
     run rm -rf OtherRepo/GLSL_Mac_Linux_High-end
