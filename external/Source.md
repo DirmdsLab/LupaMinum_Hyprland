@@ -8,7 +8,7 @@ All sources here:
 - Are used as-is or with minimal modification
 - Are managed either automatically by `setup.sh` or manually
 
-## Tmux-btop – Catppuccin Theme
+## Tmux-btop-cava – Catppuccin Theme
 
 **Type:** theme  
 **Source:** https://github.com/catppuccin/
