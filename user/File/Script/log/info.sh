@@ -13,6 +13,7 @@ get_message() {
         3) echo "VolUp and vol now = $(wpctl get-volume @DEFAULT_AUDIO_SINK@)" ;;
         4) echo "VolDown and vol now = $(wpctl get-volume @DEFAULT_AUDIO_SINK@)" ;;
         5) echo "Mute" ;;
+        6) echo "Password Wrong" ;;
         *) echo "unknown code: $1" ;;
     esac
 }
