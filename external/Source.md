@@ -8,19 +8,15 @@ All sources here:
 - Are used as-is or with minimal modification
 - Are managed either automatically by `setup.sh` or manually
 
-## Tmux – Catppuccin Theme
+## Tmux-btop – Catppuccin Theme
 
-**Type:** tmux theme  
-**Target:** `~/.config/tmux`  
-**Source:** https://github.com/catppuccin/tmux
+**Type:** theme  
+**Source:** https://github.com/catppuccin/
 
 ### Description
-Catppuccin theme for tmux.  
+Catppuccin theme
 The repository is downloaded as a zip and extracted directly into
 the tmux configuration directory.
-
-### Notes
-- Theme configuration is handled in `.tmux.conf`
 
 ## art-hypr
 ### Description
