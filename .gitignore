@@ -7,11 +7,18 @@ User/.config/mpv/playlists
 temp
 
 User/.config/mpv/shaders
-OtherRepo/GLSL_Mac_Linux_High-end
 
-OtherRepo/Theme/Font
-OtherRepo/Theme/gtk/Graphite-Dark-nord
-OtherRepo/Theme/Cursor/Bibata-Modern-Ice
-OtherRepo/Theme/Icon/01-Colloid
+# External Repo
 
-OtherRepo/sub-server/Engine
+# Mpv
+external/mpv/GLSL_Mac_Linux_High-end
+
+# Themes
+external/themes/Font
+external/themes/gtk/Graphite-Dark-nord
+external/themes/cursor/Bibata-Modern-Ice
+external/themes/icon/01-Colloid
+
+# Server
+external/sub-server/Engine
+
