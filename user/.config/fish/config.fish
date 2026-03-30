@@ -16,13 +16,13 @@ if status is-interactive
     alias Random-Script='cd ~/File/Script/random; exa -T'
 
     # Bios
-    alias RebootToBios='systemctl reboot --firmware-setup'
+    alias SystemRebootToBios='systemctl reboot --firmware-setup'
 
     # Nix Config
-    alias NIXConfig='cd ~/Nix-lupaminum/'
+    # alias NIXConfig='cd ~/Nix-lupaminum/'
     alias NIXReload='sudo nixos-rebuild switch --flake /etc/nixos#Tutturuu'
     alias NIXHistory='sudo nix-env --list-generations --profile /nix/var/nix/profiles/system'
-
+ 
     # Vol
     alias VolNow='wpctl get-volume @DEFAULT_AUDIO_SINK@'
     alias VolUp='$HOME/File/Script/audio/vol.sh up'
@@ -167,21 +167,6 @@ if status is-interactive
     
     alias key-input='~/File/Script/random/key.sh'
 
-    # Play music playlist with mpv
-    function MusicPlaylist
-        if test (count $argv) -eq 0
-            echo "Usage: MusicPlaylist <path-to-playlist.m3u>"
-            return 1
-        end
-    
-        mpv \
-            --vf=scale=640:360 \
-            --loop-playlist \
-            --no-osc \
-            --osd-level=0 \
-            "$argv[1]"
-    end
-
     # Cli
     function launch_cli_art
         set tty (tty)
@@ -191,7 +176,7 @@ if status is-interactive
         if test "$tty" = "/dev/tty1" -o "$tty" = "/dev/tty2" -o "$tty" = "/dev/tty3"
             ~/Documents/art-hypr/user.sh
         else if test $cols -ge 160; and test $lines -ge 35
-            ~/Documents/art-hypr/start-art.sh
+            ~/Documents/art-hypr/start-console.sh
         else
             neofetch
             ~/Documents/art-hypr/user.sh
