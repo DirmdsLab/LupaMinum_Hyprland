@@ -23,3 +23,4 @@ image/jpeg=org.gnome.Loupe.desktop;org.mozilla.firefox.desktop;
 audio/x-mpegurl=userapp-nano-kitty-L78IM3.desktop;mpv.desktop;nvim.desktop;mpv-tmux.desktop;
 application/x-shellscript=userapp-nano-kitty-L78IM3.desktop;nvim.desktop;
 image/gif=org.gnome.Loupe.desktop;
+application/x-kdenlive=userapp-nano-kitty-L78IM3.desktop;

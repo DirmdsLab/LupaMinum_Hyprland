@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Path folder awal playlist
-PLAYLIST_DIR="$HOME/playlist"
+# Patch
+PLAYLIST_DIR="$HOME/Playlists"
 VIDEO_DIR="$HOME/Videos/Wallpaper"
 SOCKET_PATH="/tmp/mpv-socket"
 OUTPUT_NAME="HDMI-A-1"
@@ -11,15 +11,13 @@ BASE_OPTS="--no-config --vf=scale=1920:1080:force_original_aspect_ratio=increase
 
 
 
-
-# Fungsi navigasi folder dan pilih file .m3u
 choose_media_file() {
     local root_dir="$1"
-    local mode="$2"   # "playlist" atau "video"
+    local mode="$2"   
     local current_dir="$root_dir"
 
     while true; do
-        # Ambil daftar folder & file sesuai mode, urut terbaru (mtime)
+        
         mapfile -t folders < <(find "$current_dir" -mindepth 1 -maxdepth 1 -type d \
             -printf "%T@ %f/\n" | sort -rn | cut -d' ' -f2-)
 
@@ -34,14 +32,14 @@ choose_media_file() {
 
         entries=()
 
-        # Kalau di root_dir → tombol kembali ke menu utama
+       
         if [[ "$current_dir" == "$root_dir" ]]; then
             entries+=("🔙 Kembali ke menu utama")
         else
             entries+=("🔙 ../")
         fi
 
-        # File dulu, baru folder
+        
         if [[ "$mode" == "playlist" ]]; then
             for f in "${files[@]}"; do entries+=("📜 $f"); done
         else
@@ -49,11 +47,11 @@ choose_media_file() {
         fi
         for d in "${folders[@]}"; do entries+=("📁 $d"); done
 
-        # Menu wofi
+        
         selected=$(printf "%s\n" "${entries[@]}" | wofi --dmenu --insensitive --prompt "Pilih file / folder")
         [[ -z "$selected" ]] && return 1
 
-        clean_selected="${selected#* }" # hapus ikon
+        clean_selected="${selected#* }" 
 
         if [[ "$clean_selected" == "Kembali ke menu utama" ]]; then
             return 2
@@ -69,7 +67,7 @@ choose_media_file() {
 }
 
 
-# --- Fungsi stop mpvpaper ---
+
 stop_mpvpaper() {
     PIDS=$(pgrep -f "mpvpaper -o")
     if [ -n "$PIDS" ]; then
@@ -87,7 +85,7 @@ stop_mpvpaper() {
 
 
 
-# --- Mode argumen langsung ---
+
 if [[ "$1" == "kill" ]]; then
     stop_mpvpaper
     exit 0
@@ -110,21 +108,21 @@ elif [[ "$1" == "wofiinput" ]]; then
     while true; do
         entries=("⌨️ Input manual path" "🔙 ../")
 
-        # Tambah folder (skip hidden)
+        
         mapfile -t folders < <(find "$current_dir" -mindepth 1 -maxdepth 1 -type d \
             ! -name '.*' -printf "%f/\n" | sort)
         for d in "${folders[@]}"; do
             entries+=("📂 $d")
         done
 
-        # Tambah semua file (skip hidden)
+        
         mapfile -t files < <(find "$current_dir" -mindepth 1 -maxdepth 1 -type f \
             ! -name '.*' -printf "%f\n" | sort)
         for f in "${files[@]}"; do
             case "$f" in
                 *.m3u) entries+=("📜 $f") ;;
                 *.mp4|*.mkv|*.webm|*.avi|*.mov) entries+=("🎬 $f") ;;
-                *) entries+=("📄 $f") ;;  # file lain tetap ditampilkan
+                *) entries+=("📄 $f") ;;  
             esac
         done
 
@@ -152,7 +150,7 @@ elif [[ "$1" == "wofiinput" ]]; then
                 ;;
         esac
 
-        # Validasi file
+        
         case "$INPUT_PATH" in
             *.m3u|*.M3U)
                 exec "$0" playlistplay "$INPUT_PATH"
@@ -168,12 +166,12 @@ elif [[ "$1" == "wofiinput" ]]; then
     done
 
 else
-    # --- Menu awal pilih playlist atau video ---
+    
     choice=$(printf "Playlist\nVideo" | wofi --dmenu --insensitive --prompt "Pilih sumber") || exit 1
 
     if [[ "$choice" == "Playlist" ]]; then
         SELECTED=$(choose_media_file "$PLAYLIST_DIR" "playlist")
-        [[ $? -eq 2 ]] && exec "$0" # kembali ke menu utama
+        [[ $? -eq 2 ]] && exec "$0" 
         [[ -z "$SELECTED" ]] && { echo "Batal menjalankan mpvpaper. Tidak ada playlist dipilih."; exit 0; }
         MPV_OPTS="$BASE_OPTS --loop --loop-playlist"
     elif [[ "$choice" == "Video" ]]; then
@@ -191,7 +189,7 @@ fi
 stop_mpvpaper
 
 
-# Jalankan mpvpaper dengan playlist terpilih
+
 echo "Menjalankan mpvpaper dengan playlist: $SELECTED"
 mpvpaper -o "$MPV_OPTS" "$OUTPUT_NAME" "$SELECTED"
 
