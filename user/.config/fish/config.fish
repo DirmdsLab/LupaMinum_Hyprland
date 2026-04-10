@@ -128,30 +128,30 @@ if status is-interactive
     end
 
 
-    # Neofetch
-    function neofetch
-        set ascii_dir ~/Documents/art-hypr/neofetch
+    # Fastfetch
+    function fastfetch
+        set ascii_dir ~/Documents/art-hypr/fastfetch
 
         if test (count $argv) -eq 0
-            command neofetch --ascii $ascii_dir/neofetch0
+            command fastfetch --logo $ascii_dir/fastfetch0
             return
         end
 
         if test $argv[1] = "default"
-            command neofetch
+            command fastfetch
             return
         end
 
         if string match -rq '^[0-9]+$' -- $argv[1]
             if test $argv[1] -ge 1 -a $argv[1] -le 5
-                command neofetch --ascii $ascii_dir/neofetch$argv[1]
+                command fastfetch --logo $ascii_dir/fastfetch$argv[1]
             else
-                command neofetch --ascii $ascii_dir/neofetch0
+                command fastfetch --logo $ascii_dir/fastfetch0
             end
             return
         end
 
-        command neofetch $argv
+        command fastfetch $argv
     end
 
     # ydotool
@@ -178,7 +178,7 @@ if status is-interactive
         else if test $cols -ge 160; and test $lines -ge 35
             ~/Documents/art-hypr/start-console.sh
         else
-            neofetch
+            fastfetch
             ~/Documents/art-hypr/user.sh
         end
     end
