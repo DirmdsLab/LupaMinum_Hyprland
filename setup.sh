@@ -98,9 +98,9 @@ always_run() {
     run rm -rf "$HOME/.config/mpv"
     run ln -sf "$ROOT_DIR/user/.config/mpv" "$HOME/.config/mpv"
 
-    # neofetch
-    run rm -rf "$HOME/.config/neofetch"
-    run ln -sf "$ROOT_DIR/user/.config/neofetch" "$HOME/.config/neofetch"
+    # fastfetch
+    run rm -rf "$HOME/.config/fastfetch"
+    run ln -sf "$ROOT_DIR/user/.config/fastfetch" "$HOME/.config/fastfetch"
 
     # quickshell
     run rm -rf "$HOME/.config/quickshell"
