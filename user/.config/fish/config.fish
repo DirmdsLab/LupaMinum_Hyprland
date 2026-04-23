@@ -177,7 +177,7 @@ if status is-interactive
 
     # Fastfetch
     function fastfetch
-        set ascii_dir ~/Documents/art-hypr/fastfetch
+        set ascii_dir ~/Documents/art-cli/fastfetch
 
         if test (count $argv) -eq 0
             command fastfetch --logo $ascii_dir/fastfetch0
@@ -230,12 +230,12 @@ if status is-interactive
         set lines (tput lines)
 
         if test "$tty" = "/dev/tty1" -o "$tty" = "/dev/tty2" -o "$tty" = "/dev/tty3"
-            ~/Documents/art-hypr/user.sh
+            ~/Documents/art-cli/cli/user/user.sh
         else if test $cols -ge 160; and test $lines -ge 35
-            ~/Documents/art-hypr/start-console.sh
+            ~/Documents/art-cli/cli/user/start-console.sh
         else
             fastfetch
-            ~/Documents/art-hypr/user.sh
+            ~/Documents/art-cli/cli/user/user.sh
         end
     end
 

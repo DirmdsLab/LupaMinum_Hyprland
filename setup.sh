@@ -51,9 +51,9 @@ mark_setup_done() {
 always_run() {
     log "=== ALWAYS RUN TASKS START ==="
 
-    # Art-hypr
-    run rm -rf "$HOME/Documents/art-hypr"
-    run ln -sf "$ROOT_DIR/external/art-hypr" "$HOME/Documents/art-hypr"
+    # Art-cli
+    run rm -rf "$HOME/Documents/art-cli"
+    run ln -sf "$ROOT_DIR/external/DirmdsLab/Art" "$HOME/Documents/art-cli"
 
     # Tmux
     run rm -rf "$HOME/.tmux.conf"
