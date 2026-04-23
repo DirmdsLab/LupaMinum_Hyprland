@@ -22,3 +22,6 @@ external/themes/icon/01-Colloid
 # Server
 external/sub-server/Engine
 
+# Random
+user/File/Script/random/git/sshkey.log
+

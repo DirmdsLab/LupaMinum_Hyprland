@@ -54,6 +54,53 @@ if status is-interactive
         ssh-add $key
     end
 
+    function clone-ssh
+        if test (count $argv) -lt 1
+            echo "Usage: clone-ssh <git@url>"
+            return 1
+        end
+    
+        set URL $argv[1]
+    
+        # get host 
+        set HOSTS (grep '^Host github-' ~/.ssh/config | awk '{print $2}')
+    
+        if test -z "$HOSTS"
+            echo "No github-* hosts found in ~/.ssh/config"
+            return 1
+        end
+    
+        # fzf
+        set SELECTED (printf "%s\n" $HOSTS | fzf)
+    
+        if test -z "$SELECTED"
+            echo "No host selected"
+            return 1
+        end
+    
+        # github.com -> github-xxx
+        set NEW_URL (string replace "github.com" $SELECTED $URL)
+    
+        set CMD "git clone $NEW_URL"
+    
+        echo ""
+        echo "Command:"
+        echo $CMD
+        echo ""
+    
+        # Option
+        read -l -P "Add Another Option? (y/n): " CONFIRM
+    
+        if test "$CONFIRM" = "y"
+            echo "Copy And Add Option"
+            return 0
+        else if test "$CONFIRM" = "n"
+            eval $CMD
+        else
+            echo "Batal."
+        end
+    end
+
     # Mount and unmount encrypted HDD (HDDex)
 
     function hddex-mount
