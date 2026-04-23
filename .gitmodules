@@ -1,0 +1,3 @@
+[submodule "external/DirmdsLab/Art"]
+	path = external/DirmdsLab/Art
+	url = https://github.com/DirmdsLab/Art.git
