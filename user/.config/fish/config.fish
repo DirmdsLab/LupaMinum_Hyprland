@@ -13,7 +13,7 @@ if status is-interactive
     alias FishConfig='nano ~/.config/fish/config.fish'
 
     # Script
-    alias Random-Script='cd ~/File/Script/random; exa -T'
+    alias Random-Script='cd ~/File/Script/random; eza -T'
 
     # Bios
     alias SystemRebootToBios='systemctl reboot --firmware-setup'
