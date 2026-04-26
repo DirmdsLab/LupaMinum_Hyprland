@@ -64,7 +64,7 @@ yt_download() {
     # Get video title and sanitize filename
     title=$(yt-dlp --get-title "$url")
     safe_title=$(echo "$title" | sed -E 's#[\\/:"*?<>|]#_#g' | sed -E 's/[[:space:]]+$//')
-    outdir="/mnt/download"
+    outdir="HereChange"
 
     # --- Just Audio ---
     if [[ "$just_audio" == "yes" ]]; then
