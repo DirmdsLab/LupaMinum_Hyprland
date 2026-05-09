@@ -28,7 +28,7 @@ local settings = {
   -- extra functionality keys
   key_sortplaylist = "",
   key_shuffleplaylist = "Ctrl+l",
-  key_reverseplaylist = "",
+  key_reverseplaylist = "SHIFT+R",
   key_loadfiles = "",
   key_saveplaylist = "CTRL+S",
   key_selectplaylist = "",
