@@ -150,6 +150,7 @@ first_setup_only() {
     run mkdir -p "$HOME/File/Temp"
     
     run mkdir -p "$HOME/File/Software"
+    run mkdir -p "$HOME/File/Software/App"
     run mkdir -p "$HOME/File/Software/Game"
     run mkdir -p "$HOME/File/Software/Storage/HDD/hddex"
     run mkdir -p "$HOME/File/Software/Storage/NetworkStorage/SFTP"

@@ -103,9 +103,9 @@ if status is-interactive
 
     # Mount and unmount encrypted HDD (HDDex)
 
-    function hddex-mount
+    function storage-mount
         if test (count $argv) -ne 3
-            echo "Usage: hddex-mount <UUID> <mapper_name> <mount_point>"
+            echo "Usage: storage-mount <UUID> <mapper_name> <mount_point>"
             return 1
         end
 
@@ -119,9 +119,9 @@ if status is-interactive
         echo "Mounted $mapper at $mount_point"
     end
 
-    function hddex-umount
+    function storage-umount
         if test (count $argv) -ne 2
-            echo "Usage: hddex-umount <mapper_name> <mount_point>"
+            echo "Usage: storage-umount <mapper_name> <mount_point>"
             return 1
         end
 
@@ -132,6 +132,23 @@ if status is-interactive
         sudo cryptsetup close $mapper
 
         echo "Unmounted $mapper"
+    end
+
+    function storage-mount-key
+        if test (count $argv) -ne 4
+            echo "Usage: storage-mount <UUID> <key> <mapper_name> <mount_point>"
+            return 1
+        end
+
+        set uuid $argv[1]
+        set key $argv[2]
+        set mapper $argv[3]
+        set mount_point $argv[4]
+
+        sudo cryptsetup open /dev/disk/by-uuid/$uuid $mapper --key-file $key
+        sudo mount /dev/mapper/$mapper $mount_point
+
+        echo "Mounted $mapper at $mount_point"
     end
 
     # Hyprland
